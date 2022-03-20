@@ -1,0 +1,305 @@
+//this is what you need mainly :)
+#just in case
+---------------------------
+#include<stdio.h>
+int main()
+{
+    int a, b, *p = &a, *q = &b;
+    scanf("%d %d", p, q); // scanf("%d %d", &a, &b);
+    printf("%d %d", *p, *q);
+    printf("%p %p", p, q);
+    return 0;
+}
+------------------------
+# CT-2 (A2) এর এন্সার (প্রশ্ন মনে নাই, কোড রান করে প্রশ্ন বুঝে নে)
+------------------------
+#include<stdio.h>
+int check (int c){
+    int temp = (c % 5 == 0) ? 1 : 0;
+    return temp;
+}
+int main()
+{
+    int arr[10], *p = arr, status[10], *q = status;
+    for(int i = 0; i < 10; i++){
+        scanf("%d", (p+i));
+        status[i] = check(arr[i]);
+    }
+    printf("\n");
+    for(int i = 0; i < 10; i++)
+        printf("%d ", *(q+i));
+    return 0;
+}
+--------------------------------------------------------------------------
+1. print the alphabates using pointers (you have to assign by the pointer)
+--------------------------------------------------------------------------
+#include<stdio.h>
+int main()
+{
+    char alpha[27], *p = alpha;
+    printf("------------The alphabates are------------\n");
+    printf("------------------------------------------\n");
+    //assining the alphabates
+    for(int i = 0; i < 26; i++){
+        *p = 'A' + i;
+        p++; //*p++
+    }
+    //array reformed
+    p = alpha; // এখানে এই লাইন না দিলে ইরর হবে, কারন p++ করে আমি লোকেটিং পয়েন্টকে সরিয়ে ফেলেছি। যারফলে  আবার শুরু থেকে লোকেট করা start করতে হবে।
+    for(int i = 0; i < 26; i++){
+        printf("%c  ", *(p+i));
+        //we acn use p++ or *p++ instade of *(p+i);
+    }
+    return 0;
+}
+--------------------------------------------------------------
+2. Write a program in C to add numbers using call by reference
+--------------------------------------------------------------
+#include<stdio.h>
+void add(int *a, int *b){
+    int temp = *a + *b;
+    return;
+}
+int  main()
+{
+    int a, b, *p = &a, *q = &b;
+    scanf("%d %d", p, q);
+    add(&a, &b); // passing by reference
+    printf("after adding\n------------\n");
+    printf("%d", *p +*q);
+}
+-------------------------------------------------------------------
+10. write a program using pointer that finds the length of a string
+-------------------------------------------------------------------
+#include<stdio.h>
+int main()
+{
+    char str[] = "BANGLADESH", *p = str;
+    int length = 0;
+    for(int i = 0; *p != '\0'; i++){
+        length++;
+        p++; //*p++
+    }
+    printf("%d\n", length);
+    return 0;
+}
+
+//using function
+
+#include<stdio.h>
+int str_len(char string[]){
+    char *p = string;
+    int count = 0;
+    for(int i = 0; *p != '\0'; i++)
+        count++, p++;
+    return count;
+}
+int main()
+{
+    char str[] = "BANGLADESH", *p = str;
+    int count = str_len(str);
+    printf("%d\n", count);
+    return 0;
+}
+--------------------------------------------------------------------------
+11. Write a program in C to swap elements using function call by reference
+--------------------------------------------------------------------------
+#include<stdio.h>
+void swap (int *a, int *b){
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+    return;
+}
+int main()
+{
+    int a , b, *p = &a, *q = &b;
+    scanf("%d %d", p, q);
+    swap(&a, &b); // swap(p, q);
+    printf("after swap\n------------------\n");
+    printf("%d %d", *p, *q);
+    return 0;
+}
+--------------------------------------------------------
+14. Write a program in C to sort an array using Pointer
+--------------------------------------------------------
+#include<stdio.h>
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    int arr[n], *p = arr; // p = &arr[0]
+    for(int i = 0; i < n; i++)
+        scanf("%d", p+i);
+        //we can use p++ instade of p+i, কিন্তু p++ use করলে arry এর লকেটিং পয়েন্ট সড়ে যাবে, যার ফলে এর পরের লাইনটি একটিভ করতে হবে (B line).
+    //p = arr (this line have to enable, if we use p++ earliar of the code) this line named B;
+    int temp;
+    for(int i = 0; i < n; i++){
+        for(int j = i+1; j < n; j++){
+            if(*(p+i) > *(p + j)){
+                temp = *(p+i);
+                *(p+i) = *(p+j);
+                *(p+j) = temp;
+            }
+        }
+    }
+    
+    /*
+    p = arr
+      (this line have to enable, if we use p++ earliar of the code,
+      and not even relocate the pointer to the arry after that, but 
+      if we enable the line "B", then no need to enable it, because
+      we dontperform p++ after the line "B")
+    */
+
+    for(int i = 0; i < n; i++){
+        printf("%d ", *(p+i));
+        //we can use p++ instade of p+i
+    }
+    return 0;
+}
+----------------------------------------------------------------------------
+17. Write a program in C to print the elements of an array in reverse order
+----------------------------------------------------------------------------
+#include<stdio.h>
+int main()
+{
+    int n, sum = 0;
+    scanf("%d", &n);
+    int arr[n], *p = arr;
+    for(int i = 0; i < n; i++)
+        scanf("%d", p+i);
+    for(int i = n-1; i >= 0; i--)
+        printf("%d ", *(p+i));
+    return 0;
+}
+---------------------------------------------------------------------
+22. Write a program in C to print a string in reverse using a pointer
+---------------------------------------------------------------------
+#include<stdio.h>
+#include<string.h>
+void reverse(char new_str[], int length){
+    char *p = new_str;
+    for(int i = length; i >= 0; i--)
+        printf("%c", *(p+i));
+    printf("\n");
+    //should not right return type, even not "return 0", though the return type is void
+}
+int main()
+{
+    char str[100];
+    gets(str);
+    int len = strlen(str);
+    reverse(str, len);
+}
+-------------------------------------
+(X) Pointer for 1D array using C++
+-------------------------------------
+#include<iostream>
+using namespace std;
+int main()
+{
+    int age = 10, *pAge = &age;
+    double num = 23.65, *pNum = &num;
+    cout << "AGE: " << *pAge << " " << "AGE ADDRESS: " << pAge << endl;
+    cout << "NUM: " << *pNum << " " << "NUM ADDRESS: " << pNum << endl;
+    string name;
+    getline(cin, name);
+    string *pName = &name;
+    int len = name.size(), i = 0;
+    while(i < len){
+        cout << name[i] << "    " << &name[i] << endl;
+        i++;
+    }
+    cout << "HERE IS THE ORIGINAL ADDRESS \"BASE ADDRESS\"" << "    " << pName << "    " << *pName << endl;
+    return 0;
+}
+--------------------------------------------------------------------------------------
+8.  Write a program in C to find the largest element using Dynamic Memory Allocation
+--------------------------------------------------------------------------------------
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int *arr, n;
+    scanf("%d", &n);
+    arr = (int*)malloc(sizeof(int) * n);
+    for(int i = 0; i < n; i++)
+        scanf("%d", &*(arr+i));
+    int max = -1;
+    for(int i = 0; i < n-1; i++){
+        if(*(arr+i) > *(arr+i+1))
+            max = *(arr+i);
+        else
+            max = *(arr+i+1);
+    }
+    printf("%d\n", max);
+    return 0;
+}
+---------------------------------------------------------------------------------------
+Not solved yet
+9.  Write a program in C to print all permutations of a given string using pointers.(str[5])
+12. Write a program in C to find the factorial of a given number using pointers.
+15. Write a program in C to show how a function returning pointer.
+18. Write a program in C to show the usage of pointer to structure.
+19. Write a program in C to show a pointer to union.
+20. Write a program in C to show a pointer to an array which contents are pointer to structure.
+-------------------------------------------------------------------------------------------
+/*YOU HAVE TO STORE THE MARKS OF THE STUDENTS FOR class 1 to 5(mainly five individual stages)
+  NOTE IT THAT THE STUDENT NUMBER OF EACH CLASSES ISN'T SAME
+  YOUR PROGRAMM MUST TAKE THE INPUT THE NUMBER OF STUDENT(S)
+  OF EACH CLASS (concept: dynamic memory allocation)
+*/
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    int *arr[5], num[5];
+    printf("Please, enter the students number for each class correspondly: ");
+    for(int i = 0; i < 5; i++){
+        scanf("%d", &num[i]);
+        arr[i] = (int*)calloc(sizeof(int) , num[i]);
+        for(int j = 0; j < num[i]; j++)
+            scanf("%d", &*(arr[i] + j));
+    }
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < num[i]; j++)
+            printf("%d ", *(arr[i] + j));
+        printf("\n");
+    }
+    free(arr[5]); // deleting the heap memory. don't understand? search goolge :)
+    return 0;
+}
+-------------------------------------------------------------------------------------------
+/*YOU HAVE TO STORE THE MARKS OF THE STUDENTS FOR EACH CLASSES
+  NOTE IT THAT THE STUDENT NUMBER OF EACH CLASSES ISN'T SAME
+  YOUR PROGRAMM MUST TAKE THE INPUT THE NUMBER OF CLASS AND
+  THE STUDENT(S) OF EACH CLASS (concept: dynamic memory allocation)
+*/
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    int **arr, num[12], n;
+    printf("Please, enter the total number of classes: ");
+    scanf("%d", &n);
+    arr = (int**)malloc(sizeof(int) * n);
+    printf("\tNow enter the student numbers and the marks of studens correspondingly");
+    for(int i = 0; i < n; i++){
+        scanf("%d", &num[i]);
+        arr[i] = (int*)malloc(sizeof(int) * num[i]);
+        for(int j = 0; j < num[i]; j++) 
+            scanf("%d", &*(arr[i] + j));
+    }
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < num[i]; j++)
+            printf("%d ", *(arr[i] + j));
+        printf("\n");
+    }
+    free(arr);
+    return 0;
+}
+---------------------------------------------------------------------------------------------------
