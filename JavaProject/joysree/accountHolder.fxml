@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="joysree.detailController">
+   <children>
+      <Button layoutX="219.0" layoutY="150.0" mnemonicParsing="false" onAction="#accountDetails" prefHeight="25.0" prefWidth="168.0" text="Account Details" />
+      <Button layoutX="219.0" layoutY="200.0" mnemonicParsing="false" onAction="#transactionDetails" prefHeight="25.0" prefWidth="168.0" text="Transaction Details" />
+      <Button layoutX="219.0" layoutY="248.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="168.0" text="Exit" />
+      <Label layoutX="199.0" layoutY="61.0" text="Account Holder">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="27.0" layoutY="314.0" mnemonicParsing="false" onAction="#home" prefHeight="25.0" prefWidth="76.0" text="Home" />
+      <Button layoutX="497.0" layoutY="314.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="76.0" text="Back" />
+   </children>
+</AnchorPane>

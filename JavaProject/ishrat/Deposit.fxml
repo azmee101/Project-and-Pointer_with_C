@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="403.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ishrat.transacionsController">
+   <children>
+      <Label layoutX="68.0" layoutY="50.0" prefHeight="53.0" prefWidth="365.0" text="Deposit &amp; Withdraw">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="52.0" layoutY="154.0" text=" ACCOUNT NUMBER :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="235.0" prefHeight="27.0" prefWidth="184.0" text="AMOUNT :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="77.0" layoutY="328.0" mnemonicParsing="false" onAction="#home" text="HOME">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="391.0" layoutY="328.0" mnemonicParsing="false" onAction="#back" text="BACK">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <TextField fx:id="acNumTf" layoutX="250.0" layoutY="154.0" />
+      <TextField fx:id="amtTf" layoutX="250.0" layoutY="236.0" />
+      <Button layoutX="160.0" layoutY="290.0" mnemonicParsing="false" onAction="#deposit" text="Deposit" />
+      <Button layoutX="291.0" layoutY="290.0" mnemonicParsing="false" onAction="#withdraw" text="Withdraw" />
+   </children>
+</AnchorPane>
