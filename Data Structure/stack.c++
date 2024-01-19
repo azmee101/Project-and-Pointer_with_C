@@ -100,3 +100,10 @@ int main()
     }while(n != 0);
     return 0;
 }
+
+/*
+
+ complexity
+ insertion [push()] and delation [pop()] = O(1)
+
+*/
